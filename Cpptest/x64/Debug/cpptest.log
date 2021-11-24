@@ -1,0 +1,10 @@
+﻿  cpptest.cpp
+cpptest.obj : error LNK2019: unresolved external symbol "public: __cdecl vector<struct test_struct>::vector<struct test_struct>(void)" (??0?$vector@Utest_struct@@@@QEAA@XZ) referenced in function main
+cpptest.obj : error LNK2019: unresolved external symbol "public: void __cdecl vector<struct test_struct>::push_back(struct test_struct &&)" (?push_back@?$vector@Utest_struct@@@@QEAAX$$QEAUtest_struct@@@Z) referenced in function main
+cpptest.obj : error LNK2019: unresolved external symbol "public: void __cdecl vector<struct test_struct>::resize(unsigned __int64)" (?resize@?$vector@Utest_struct@@@@QEAAX_K@Z) referenced in function main
+cpptest.obj : error LNK2019: unresolved external symbol "public: struct test_struct & __cdecl vector<struct test_struct>::operator[](unsigned __int64)" (??A?$vector@Utest_struct@@@@QEAAAEAUtest_struct@@_K@Z) referenced in function main
+cpptest.obj : error LNK2019: unresolved external symbol "public: unsigned __int64 __cdecl vector<struct test_struct>::size(void)const " (?size@?$vector@Utest_struct@@@@QEBA_KXZ) referenced in function main
+cpptest.obj : error LNK2019: unresolved external symbol "public: unsigned __int64 __cdecl vector<struct test_struct>::capacity(void)const " (?capacity@?$vector@Utest_struct@@@@QEBA_KXZ) referenced in function main
+cpptest.obj : error LNK2019: unresolved external symbol "public: __cdecl vector<struct test_struct>::~vector<struct test_struct>(void)" (??1?$vector@Utest_struct@@@@QEAA@XZ) referenced in function main
+cpptest.obj : error LNK2019: unresolved external symbol "public: void __cdecl vector<struct test_struct>::emplace_back<int *>(int * &&)" (??$emplace_back@PEAH@?$vector@Utest_struct@@@@QEAAX$$QEAPEAH@Z) referenced in function main
+C:\Users\Kontra Games-03\Desktop\Cpptest\x64\Debug\cpptest.exe : fatal error LNK1120: 8 unresolved externals

@@ -1,0 +1,7 @@
+﻿  cpptest.cpp
+cpptest.obj : error LNK2001: unresolved external symbol "public: __cdecl vector<struct test_struct>::~vector<struct test_struct>(void)" (??1?$vector@Utest_struct@@@@QEAA@XZ)
+cpptest.obj : error LNK2001: unresolved external symbol "public: void __cdecl vector<struct test_struct>::resize(unsigned __int64)" (?resize@?$vector@Utest_struct@@@@QEAAX_K@Z)
+cpptest.obj : error LNK2001: unresolved external symbol "public: void __cdecl vector<struct test_struct>::emplace_back<int *>(int * &&)" (??$emplace_back@PEAH@?$vector@Utest_struct@@@@QEAAX$$QEAPEAH@Z)
+cpptest.obj : error LNK2001: unresolved external symbol "public: void __cdecl vector<struct test_struct>::push_back(struct test_struct &&)" (?push_back@?$vector@Utest_struct@@@@QEAAX$$QEAUtest_struct@@@Z)
+cpptest.obj : error LNK2001: unresolved external symbol "public: __cdecl vector<struct test_struct>::vector<struct test_struct>(void)" (??0?$vector@Utest_struct@@@@QEAA@XZ)
+C:\Users\Kontra Games-03\Desktop\Cpptest\x64\Release\cpptest.exe : fatal error LNK1120: 5 unresolved externals

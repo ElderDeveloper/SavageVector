@@ -1,92 +1,195 @@
+﻿#pragma once
 #include <cstdint>
 #include <utility>
 #include <new>
-// This is a stripped-down version of std::vector.
-//
-// Your task is to implement the vector's interface so that it can be used to
-// contain arbitrary well-behaved elements which may have significant
-// constructors, destructors and copy and move assignment operators.
-//
-// You are allowed to extend the interface in compatible ways to add new
-// functions but this is not required or expected.
-//
-// To keep the test reasonably compact, some features are out of scope:
-// - exception safety
-// - custom allocators
-// - any features beyond C++11
-//
-// Reference:
-// https://en.cppreference.com/w/cpp/container/vector
+#include <memory>
+#include <stdexcept>
+#include <iterator>
+#include <limits>
+#include <algorithm>
 
 
-template <typename T>
-class vector
+template<typename T>
+class Vector
 {
+    
 public:
+
+    typedef T value_type;
+    typedef size_t size_type;
+    typedef std::ptrdiff_t difference_type;
+    typedef T& reference;
+    typedef const T& const_reference;
     typedef T* pointer;
-    typedef T* iterator;
+    typedef const T* const_pointer;
+    typedef const T* const_iterator;
 
-    vector();
-    vector(const vector& rhs);
-    vector(vector&& rhs);
 
-    //It Returns The Iterator To The Begining
+//<<<<<<<<<<<<<<<<<<<<<< Constructors >>>>>>>>>>>>>>>>>>>>>
+#pragma region Constructor
+    
+    Vector();
+    
+    // Copy Constructor
+    Vector (const Vector& args);
+
+    //Copy Assignment
+    Vector<T>& operator= (const Vector<T>& args);
+
+    // Destructor
+    ~Vector();
+    
+#pragma endregion
+
+private:
+
+    size_t _Size;       // Number of elements in Vector
+    T* _Elements;       // Pointer to first element of Vector
+    size_t _Capacity;   // Total space used by Vector including elements and free space.
+    std::allocator<T>  allocator;
+
+
+public:
+//<<<<<<<<<<<<<<<<<<<<< Iterators >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#pragma region iterator
+    class iterator;
+
     iterator begin();
-    // It Returns The Iterator To The End
+    const iterator begin() const;
     iterator end();
+    const iterator end() const;
+#pragma endregion
 
-    //It Adds Element At The End Of The Vector
-    void push_back(const T& x);
-    void push_back(T&& x);
 
-    //It Deletes The Last Element Of The Vector
-    void pop_back();
+    
 
-    //Removes The Elements From The Container From The Specified Range
-    void erase();
+//<<<<<<<<<<<<<<<<<<<<<< Capacity Functions >>>>>>>>>>>>>>>>>>>>>>>>>
+#pragma region Capacity
 
-    template <typename... A>
-    void emplace_back(A&&... a);
+    bool isEmpty() const;
 
-    //Inserts New Elements Before Specified Position
-    void insert(iterator where, const T& x);
+    // Returns size of allocated storage capacity
+    size_t capacity() const;
 
-    //It Assigns New Value To The Vector
-    void assign();
+    // Requests a change in capacity but it will never decrease the capacity.
+    void reserve(size_t newAlloc);
 
-    //It Swaps The Content Between Vectors
-    void swap(vector& rhs);
+    /*
+     *  Changes the Vector's size.
+     *  If the newSize is smaller, the last elements will be lost
+     **/
+    void resize(size_t newSize);
 
-    //It Changes The Size Of Vector
-    void resize(std::size_t newSize);
+    // Returns the size of the Vector (number of elements). 
+    size_t size() const;
+    
+    
+#pragma endregion
 
-    //increase capacity to capacity (without geometric growth), provide strong guarantee
-    void reserve(std::size_t capacity);
 
-    //It Returns Number Of Elements In The Vector
-    std::size_t size() const;
 
-    //It Returns Maximum Size Of The Vector
-    std::size_t max_size() const;
+    
+//<<<<<<<<<<<<<<<<<<<<<< Vector Modifier Functions >>>>>>>>>>>>>>>>>>>>>>>>>
+#pragma region Modifier
 
-    //Returns Size Of Allocated Storage Capacity
-    std::size_t capacity() const;
-
-    //It Tests Whether The Vector In Empty
-    bool empty();
-
-    // It Is Used To Remove All Elements Of The Vector
+    // Removes all elements from the Vector But Capacity is not changed.
     void clear();
 
-    ~vector();
+    // Inserts element at the back
+    void push_back(const T& value);
+
+    // Removes the last element from the Vector
+    void pop_back();
+
+    void reallocate(size_t newCapacity);
+    /*
+     * Decreases the capacity of the array to be newSize
+     * If newSize is larger than the current capacity, nothing is done
+     **/
+    void deallocate(size_t newSize);
+
+    template<class... Args>
+    iterator emplace(iterator it, Args&&... args);
+    
+    template <typename... Args>
+    T& emplace_back(Args&&... args);
+    
+
+#pragma endregion
 
 
-    vector& operator=(const vector& rhs);
-    vector& operator=(vector&& rhs);
 
-    T& operator[](std::size_t index);
+ //<<<<<<<<<<<<<<<<<<<<<<<< Vector Element Accessors >>>>>>>>>>>>>>>>>>>>>>>>>>
+#pragma region Access
 
-    const T& operator[](std::size_t index) const;
+    // Access elements with bounds checking
+    T& at(size_t n);
+    const T& at(size_t n) const;
+
+    // Returns a reference to the first element
+    T& fist();
+    const T& fist() const;
+
+    // Returns a reference to the last element
+    T& last();
+
+    // Returns a reference to the last element
+    const T& last() const;
+
+    // Access elements, no bounds checking
+    T& operator[](size_t i) const;
+    const T& operator[](int i) const;
+
+    // Returns a pointer to the array used by Vector
+    T* data();
+    const T* data() const;
+    
+#pragma endregion
+
+    size_t max_size() const
+    {
+        return std::numeric_limits<size_t>::max();
+    }
     
 };
 
+
+
+
+template<class T> class Vector<T>::iterator
+{
+public:
+    iterator(T* p)
+        :_Ptr(p)
+    {}
+
+    iterator& operator++()
+    {
+        _Ptr++;
+        return *this;
+    }
+
+    iterator& operator--()
+    {
+        _Ptr--;
+        return *this;
+    }
+
+    T& operator*()
+    {
+        return *_Ptr;
+    }
+
+    bool operator==(const iterator& b) const
+    {
+        return *_Ptr == *b._Ptr;
+    }
+
+    bool operator!=(const iterator& b) const
+    {
+        return *_Ptr != *b._Ptr;
+    }
+
+private:
+    T* _Ptr;
+};

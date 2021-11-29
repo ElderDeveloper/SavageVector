@@ -1,0 +1,16 @@
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Intermediate\Build\Win64\UE4Editor\Development\UESettingsPlugin\Definitions.UESettingsPlugin.h
+D:/UnrealProjects/DungeonHunt/Plugins/UESettingsPlugin/Source/UESettingsPlugin/Library/UESettingsPluginBPLibrary.cpp
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Source\UESettingsPlugin\Library\UESettingsPluginBPLibrary.h
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Intermediate\Build\Win64\UE4Editor\Inc\UESettingsPlugin\UESettingsPluginBPLibrary.generated.h
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Source\UESettingsPlugin/Subsystems/UESettingsPlayerSubsystem.h
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Source\UESettingsPlugin/Save/UESettingsData.h
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Intermediate\Build\Win64\UE4Editor\Inc\UESettingsPlugin\UESettingsData.generated.h
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Intermediate\Build\Win64\UE4Editor\Inc\UESettingsPlugin\UESettingsPlayerSubsystem.generated.h
+D:/UnrealProjects/DungeonHunt/Plugins/UESettingsPlugin/Source/UESettingsPlugin/Save/UESettingsSaveGame.cpp
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Source\UESettingsPlugin\Save\UESettingsSaveGame.h
+D:\Program Files\Epic Games\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/SaveGame.h
+D:\Program Files\Epic Games\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SaveGame.generated.h
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Intermediate\Build\Win64\UE4Editor\Inc\UESettingsPlugin\UESettingsSaveGame.generated.h
+D:/UnrealProjects/DungeonHunt/Plugins/UESettingsPlugin/Source/UESettingsPlugin/Subsystems/UESettingsPlayerSubsystem.cpp
+D:/UnrealProjects/DungeonHunt/Plugins/UESettingsPlugin/Source/UESettingsPlugin/UESettingsPlugin.cpp
+D:\UnrealProjects\DungeonHunt\Plugins\UESettingsPlugin\Source\UESettingsPlugin\UESettingsPlugin.h

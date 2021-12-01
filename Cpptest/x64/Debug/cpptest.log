@@ -1,3 +1,2 @@
 ﻿  cpptest.cpp
-C:\Users\kemal\Desktop\SavageVector\Cpptest\cpptest.h(101): warning C4172: returning address of local variable or temporary
-  cpptest.vcxproj -> C:\Users\kemal\Desktop\SavageVector\Cpptest\x64\Debug\cpptest.exe
+  cpptest.vcxproj -> C:\Users\Kontra Games-03\Desktop\Savage\Plugins\SavageVector\Cpptest\x64\Debug\cpptest.exe

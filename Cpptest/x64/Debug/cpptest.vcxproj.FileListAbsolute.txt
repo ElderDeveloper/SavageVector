@@ -1,2 +1,0 @@
-C:\Users\kemal\Desktop\SavageVector\Cpptest\x64\Debug\cpptest.exe
-C:\Users\Kontra Games-03\Desktop\Savage\Plugins\SavageVector\Cpptest\x64\Debug\cpptest.exe

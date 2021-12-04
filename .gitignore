@@ -73,3 +73,5 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+Cpptest/.idea/.idea.cpptest/.idea/projectSettingsUpdater.xml
+Cpptest/.idea/.idea.cpptest/.idea/workspace.xml

@@ -9,12 +9,12 @@ void USavageVectorStaticLibrary::AddFloatValueToStaticVector(FName VectorName, f
 {
 	if (const auto VectorRef = StaticFloatVector.Find(VectorName))
 	{
-		VectorRef->push_back(Value);
+		VectorRef->Push_Back(Value);
 	}
 	else
 	{
-		const auto Savage = new SavageVector<float>();
-		Savage->push_back(Value);
+		const auto Savage = new vector<float>();
+		Savage->Push_Back(Value);
 		StaticFloatVector.Add(VectorName,*Savage);
 	}
 }
@@ -22,9 +22,10 @@ void USavageVectorStaticLibrary::AddFloatValueToStaticVector(FName VectorName, f
 TArray<float> USavageVectorStaticLibrary::GetFloatArrayFromStaticVector(FName VectorName)
 {
 	TArray<float> OutArray;
+	
 	if (const auto VectorRef = StaticFloatVector.Find(VectorName))
 	{
-		for (size_t i = 0 ; i < VectorRef->size() ; i++)
+		for (size_t i = 0 ; i < VectorRef->Size() ; i++)
 		{
 			const auto Savage = GetVectorValue<float>(*VectorRef,i);
 			OutArray.Add(*Savage);
@@ -33,13 +34,15 @@ TArray<float> USavageVectorStaticLibrary::GetFloatArrayFromStaticVector(FName Ve
 	return OutArray;
 }
 
-void USavageVectorStaticLibrary::RemoveFloatIndexFromStaticVector(FName VectorName, int32 index)
+bool USavageVectorStaticLibrary::RemoveFloatIndexFromStaticVector(FName VectorName, int32 index)
 {
 	if (const auto VectorRef = StaticFloatVector.Find(VectorName))
 	{
-		if (VectorRef->size() > index)
+		if (VectorRef->Size() > index)
 		{
-			//VectorRef->
+			VectorRef->Pop_At(index);
+			return true;
 		}
 	}
+	return false;
 }

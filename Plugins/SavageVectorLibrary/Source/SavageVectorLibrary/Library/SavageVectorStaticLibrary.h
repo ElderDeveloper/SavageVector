@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "../../../../../Source/Savage/SavageVector.h"
+#include "SavageVectorLibrary/cpptest.h"
 #include "SavageVectorStaticLibrary.generated.h"
 
 
-static TMap<FName,SavageVector<float>> StaticFloatVector;
+static TMap<FName,vector<float>> StaticFloatVector;
 
 
 
@@ -24,5 +24,5 @@ public:
 	static TArray<float> GetFloatArrayFromStaticVector(FName VectorName);
 
 	UFUNCTION(BlueprintPure , Category="Savage Vector|Static")
-	static void RemoveFloatIndexFromStaticVector(FName VectorName , int32 index);
+	static bool RemoveFloatIndexFromStaticVector(FName VectorName , int32 index);
 };

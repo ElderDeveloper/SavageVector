@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "../../../../../Source/Savage/SavageVector.h"
+#include "SavageVectorLibrary/cpptest.h"
 #include "UObject/Object.h"
 #include "SavageVectorStructs.generated.h"
 
@@ -11,9 +11,9 @@
 
 
 template<typename T>
-T* GetVectorValue(SavageVector<T>& Ref , int32 index) { return &Ref[index] ;}
+T* GetVectorValue(vector<T>& Ref , int32 index) { return &Ref[index] ;}
 template<typename T>
-void AddVectorValue(SavageVector<T>& Ref , T element) { Ref.push_back(element);}
+void AddVectorValue(vector<T>& Ref , T element) { Ref.Push_Back(element);}
 
 
 USTRUCT(BlueprintType)
@@ -27,11 +27,11 @@ public:
 
 	FSavageVectorFloat ()
 	{
-		Vector = new SavageVector<float>();
+		Vector = new vector<float>();
 
 		for (const auto i : FirstElements)
 		{
-			Vector->push_back(i);
+			Vector->Push_Back(i);
 		}
 		if (Vector)
 		{
@@ -45,7 +45,7 @@ public:
 	
 	float GetValue(int32 index) const { return *GetVectorValue<float>(*Vector,index);}
 	void Add(float Element) { AddVectorValue<float>(*Vector,Element);}
-	SavageVector<float>* Vector;
+	vector<float>* Vector;
 };
 
 
@@ -60,11 +60,11 @@ public:
 
 	FSavageVectorInt ()
 	{
-		Vector = new SavageVector<int32>();
+		Vector = new vector<int32>();
 
 		for (const auto i : FirstElements)
 		{
-			Vector->push_back(i);
+			Vector->Push_Back(i);
 		}
 		if (Vector)
 		{
@@ -78,7 +78,7 @@ public:
 	
 	float GetValue(int32 index) const { return *GetVectorValue<int32>(*Vector,index);}
 	void Add(float Element) { AddVectorValue<int32>(*Vector,Element);}
-	SavageVector<int32>* Vector;
+	vector<int32>* Vector;
 };
 
 

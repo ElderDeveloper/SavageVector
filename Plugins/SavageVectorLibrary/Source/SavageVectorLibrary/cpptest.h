@@ -22,7 +22,7 @@ private:
              T *new_element = new T[sz];
 
              // copy old vector size_to new one
-            for (size_t i = 0; (size_t)i < size; ++i)
+            for (size_t i = 0; i < size; ++i)
              {
                     new_element[i] = element[i];
              }
@@ -45,7 +45,7 @@ private:
 
                 T *new_element = new T[sz];
 
-            for (size_t i = 0; (size_t)i < size; ++i)
+            for (size_t i = 0; i < size; ++i)
                 new_element[i] = element[i];
 
                 capacity = sz;
@@ -93,9 +93,9 @@ private:
 		// Overloaded constructor for use with an initialization list
 		// IE: vector<size_t> d = {10, 5, 10}; or
 		// vector<size_t> d{10, 5, 10};
-		vector(std::initializer_list<T> const &s)
+		vector(std::initializer_list<T> const &rhs)
 		{
-	        size = s.size();
+	        size = rhs.size();
             capacity = 10;
             size_t i = 0;
 
@@ -104,7 +104,7 @@ private:
 
             element = new T[capacity];
 
-            for (auto it = s.begin(); it < s.end(); ++it)
+            for (auto it = rhs.begin(); it < rhs.end(); ++it)
             {
                 element[i] = *it;
                 ++i;
@@ -297,42 +297,67 @@ private:
 		}
 
 
-
-
-		// Resize the vector if newSize is bigger than size allocate new memory else: Pop_Back until newSize and size becomes equal
-		void resize(size_t newSize)
-		{
-			if (newSize > size)
-			{
-				allocate(newSize);
-			}
-			else
-			{
-				while (size > newSize)
-				{
-					Pop_Back();
-				}
-			}
-		}
-
-		/*
-		template <typename... A>
-		void emplace_back(A&&... a);
-		*/
-
-
+		
 		/*
 		* Increase the capacity of the vector to a value that's greater or equal to new_cap. 
 		* If newCapacity is greater than the current capacity(), new storage is allocated, otherwise the function does nothing.
 		*/
-		void reserve(size_t newCapacity)
+		void Reserve(size_t newCapacity)
 		{
-			if (newCapacity > capacity)
-			{
-				allocate(newCapacity);
-			}
+			if (newCapacity <= capacity) return;
+
+			T* p = new T[newCapacity];
+
+			for (int i = 0; i < size; i++)
+				p[i] = element[i];
+
+			delete[] element;
+			element = p;
+			capacity = newCapacity;
 		}
 
+
+		// Resize the vector if newSize is bigger than size allocate new memory
+		void Resize(size_t newSize)
+		{
+			Reserve(newSize);
+    
+			for (size_t i = size; i < newSize; i++)
+				element[i] = T();
+
+			size = newSize;
+		}
+
+		template< class... Args >
+		Iterator Emplace(const T* pos, Args&&... args)
+		{
+			const std::ptrdiff_t index = pos - Begin();
+        
+			if (index < 0 || index > Size()) {
+				throw new std::out_of_range("Insert index is out of range");
+			}
+        
+			if (Size() == Capacity()) {
+				allocate(Capacity() + 1);
+			}
+        
+			Iterator it = &element[index];
+        
+			std::move(it, End(), it + 1);
+			Iterator(it, args...);
+        
+			size++;
+        
+			return it;
+		}
+	
+		template< class... Args >
+		void Emplace_Back(Args&&... args)
+		{
+			Emplace(End(), std::forward<Args>(args)...);
+		}
+
+			
 		// Sets the position "pos" to the value of "item"
 		void Set(size_t pos, T &item)
 		{
@@ -462,7 +487,7 @@ private:
 			{
 				// Loop from the position after this element,
 				// to the last element in the vector
-				for (size_t i = (size_t)pos; i < size-1; ++i)
+				for (size_t i = pos; i < size-1; ++i)
 				{
 					// Switch the elements
 					T temp = element[i];

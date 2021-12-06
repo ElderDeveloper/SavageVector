@@ -1,3 +1,5 @@
+
+#include "cpptest.h"
 #include <string>
 #include <iostream>
 #include <cassert>
@@ -91,25 +93,23 @@ struct test_struct
 int main()
 {
     int c0 = 0, c1 = 0, c2 = 0;
-
     {
         /*
         vector<test_struct> t0;
-        t0.push_back(test_struct{&c0});
+        t0.Push_Back(test_struct{&c0});
         check_values(0, 1, 0, 0);
-        t0.emplace_back(&c0);
+        t0.Emplace_Back(&c0);
         check_values(0, 2, 0, 0);
-        t0.resize(10);
+        t0.Resize(10);
         check_values(8, 2, 0, 0);
-        t0.resize(2);
+        t0.Resize(2);
         check_values(0, 2, 0, 0);
-        t0.resize(1);
+        t0.Resize(1);
         check_values(0, 1, 0, 0);
         assert(t0[0].p == &c0);
         assert(t0.capacity() >= t0.size());
         */
     }
-
     check_values(0, 0, 0, 0);
 
 #ifdef CHECK_MORE

@@ -42,11 +42,44 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	bool IsValid = false;
 
+	
 	float GetValue(int32 index) const { return *GetVectorValue<float>(*Vector,index);}
 	void Add(float Element) { AddVectorValue<float>(*Vector,Element);}
 	SavageVector<float>* Vector;
 };
 
+
+USTRUCT(BlueprintType)
+struct FSavageVectorInt
+{
+	GENERATED_BODY();
+public:
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	TArray<int32> FirstElements;
+
+	FSavageVectorInt ()
+	{
+		Vector = new SavageVector<int32>();
+
+		for (const auto i : FirstElements)
+		{
+			Vector->push_back(i);
+		}
+		if (Vector)
+		{
+			IsValid=true;
+		}
+	}
+
+	UPROPERTY(BlueprintReadOnly)
+	bool IsValid = false;
+
+	
+	float GetValue(int32 index) const { return *GetVectorValue<int32>(*Vector,index);}
+	void Add(float Element) { AddVectorValue<int32>(*Vector,Element);}
+	SavageVector<int32>* Vector;
+};
 
 
 

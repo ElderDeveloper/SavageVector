@@ -1,7 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "SavageVectorLibraryBPLibrary.h"
-#include "SavageVectorLibrary.h"
+#include "SavageVectorLibrary/SavageVectorLibrary.h"
 
 USavageVectorLibraryBPLibrary::USavageVectorLibraryBPLibrary(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)

@@ -164,6 +164,14 @@ public:
         _Size++;
     }
 
+    void remove_at(const size_t index)
+    {
+        if (size() > index)
+        {
+            
+        }
+    }
+
     // Removes the last element from the Vector
     void pop_back()
     {
@@ -177,6 +185,9 @@ public:
             deallocate(capacity / 10);
     }
 
+    /*
+     * Increases the capacity of the array to be newCapacity
+    **/
     void reallocate(size_t newCapacity)
     {
         T* newBlock = (T*)::operator new (newCapacity * sizeof(T));
@@ -196,6 +207,8 @@ public:
         _Elements = newBlock;
         _Capacity = newCapacity;
     }
+
+    
     /*
      * Decreases the capacity of the array to be newSize
      * If newSize is larger than the current capacity, nothing is done
@@ -290,14 +303,7 @@ public:
     {
         return _Elements[_Size - 1];
     }
-
-    // Access elements, no bounds checking
-    T& operator[](size_t i) const
-    {
-        return _Elements[i];
-    }
-
-
+    
     // Returns a pointer to the array used by Vector
     T* data()
     {
@@ -314,7 +320,17 @@ public:
     {
         return 99;
     }
-    
+
+
+    T& operator[](size_t i)
+    {
+       return  _Elements[i];
+    }
+
+    T& operator[](size_t i) const
+    {
+        return  _Elements[i];
+    }
 };
 
 
